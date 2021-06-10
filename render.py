@@ -90,7 +90,10 @@ class Render:
             color = (0, 255, 0)
         else:
             color = (0, 0, 255)
-        img[y:y+h, x:x+w][self.template.gy, self.template.gx] = color
+        try:
+            img[y:y+h, x:x+w][self.template.gy, self.template.gx] = color
+        except IndexError:
+            pass
         cv2.rectangle(img, (x, y), (x+w, y+h), color, 2)
 
         return img
